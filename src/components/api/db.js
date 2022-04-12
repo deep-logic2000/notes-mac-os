@@ -1,6 +1,8 @@
-import Dexie from 'dexie';
+import Dexie from "dexie";
 
-export const db = new Dexie('myDatabase');
+export const db = new Dexie("myDatabase");
 db.version(1).stores({
-  friends: '++id, name, age', // Primary key and indexed props
+  notes: "++id, noteTitle, noteText", // Primary key and indexed props
 });
+
+db.open();
