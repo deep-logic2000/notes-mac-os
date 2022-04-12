@@ -1,15 +1,24 @@
 import React from "react";
+import "./ListItem.scss";
 
-const ListItem = (props) => {
-  const {id, title, text} = props
+const ListItem = props => {
+  const { id, title, text, activeItem, setActiveItem, changeCurrentNote } =
+    props;
   // console.log(title);
+  const handleClick = () => {
+    setActiveItem(id);
+  };
   return (
-  <li>
-    <h2>{title}</h2>
-    <p>{text}</p>
+    <li
+      onClick={() => {
+        handleClick(); changeCurrentNote(text);
+      }}
+      className={activeItem === id ? "active" : ""}
+    >
+      <h2>{title}</h2>
+      <p>{text}</p>
     </li>
-  // <p>{noteText}</p>
-  )
+  );
 };
 
 export default ListItem;

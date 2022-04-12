@@ -5,7 +5,8 @@ import {
 
 const initialState = {
     notes: [],
-    isLoading: false
+    isLoading: false,
+    currentText: ""
 };
 
 const notesReducer = (state = initialState, action) => {
@@ -13,12 +14,12 @@ const notesReducer = (state = initialState, action) => {
         case FETCH_DATA:
             const newState = {...state, notes: action.payload}
 
-            localStorage.setItem('notes', JSON.stringify(newState));
+            // localStorage.setItem('notes', JSON.stringify(newState));
             return newState
 
          case SET_IS_LOADING:
 
-            localStorage.setItem('notes', JSON.stringify({...state, isLoading: action.payload}));
+            // localStorage.setItem('notes', JSON.stringify({...state, isLoading: action.payload}));
             return {...state, isLoading: action.payload}
 
 
