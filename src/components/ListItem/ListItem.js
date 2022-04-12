@@ -2,7 +2,7 @@ import React from "react";
 import "./ListItem.scss";
 
 const ListItem = props => {
-  const { id, title, text, activeItem, setActiveItem, changeCurrentNote } =
+  const { id, title, text, activeItem, setActiveItem, changeCurrentNote, changeCurrentId } =
     props;
   // console.log(title);
   const handleClick = () => {
@@ -11,7 +11,7 @@ const ListItem = props => {
   return (
     <li
       onClick={() => {
-        handleClick(); changeCurrentNote(text);
+        handleClick(); changeCurrentNote(text); changeCurrentId(id)
       }}
       className={activeItem === id ? "active" : ""}
     >

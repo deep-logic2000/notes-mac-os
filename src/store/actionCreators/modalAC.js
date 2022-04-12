@@ -5,7 +5,7 @@ export const setIsOpenModalAC = isOpen => ({
   payload: isOpen,
 });
 
-export const setConfig = (id, text) => ({
+export const setConfig = (id, title, text, modalBtn) => ({
   type: SET_CONFIG,
-  payload: { id, text },
+  payload: { id, title, text, modalBtn },
 });

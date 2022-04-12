@@ -1,6 +1,8 @@
 import {
     FETCH_DATA,
     SET_IS_LOADING,
+    ADD_NOTE,
+    DELETE_NOTE
 } from "../actions/notesAction";
 
 const initialState = {
@@ -22,6 +24,16 @@ const notesReducer = (state = initialState, action) => {
             // localStorage.setItem('notes', JSON.stringify({...state, isLoading: action.payload}));
             return {...state, isLoading: action.payload}
 
+            case ADD_NOTE:{
+
+                // localStorage.setItem('notes', JSON.stringify({...state, notes: [...state.notes, action.payload]}));
+                return {...state, notes: [...state.notes, action.payload]};
+            }
+
+            case DELETE_NOTE:
+
+                // localStorage.setItem('notes', JSON.stringify({...state, notes: action.payload}));
+                return {...state, notes: action.payload}
 
         default:
             return state;

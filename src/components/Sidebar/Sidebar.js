@@ -3,12 +3,13 @@ import PropTypes from "prop-types";
 import ListItem from "../ListItem/ListItem";
 import { useDispatch, useSelector } from "react-redux";
 // import { fetchDataFromLS } from "../../store/actionCreators/noteAC";
-import { fetchData, addNote } from "../../store/actionCreators/noteAC";
+import { fetchData } from "../../store/actionCreators/noteAC";
 import { FETCH_DATA } from "../../store/actions/notesAction";
+import AddNoteButton from "../AddNoteButton/AddNoteButton"
 import "./Sidebar.scss";
 
 const Sidebar = (props) => {
-    const {changeCurrentNote} = props
+    const {changeCurrentNote, changeCurrentId} = props
   const notes = useSelector(({ notes }) => notes.notes);
   const isLoading = useSelector(({ notes }) => notes.isLoading);
   const [activeItem, setActiveItem] = useState(null);
@@ -29,9 +30,7 @@ const Sidebar = (props) => {
   return (
     <>
       <div>
-        <button className="btnAddNote" onClick={() => dispatch(addNote())}>
-          Add Note
-        </button>
+          <AddNoteButton />
         <ul>
           {notes &&
             notes.map(({ id, noteTitle, noteText }) => (
@@ -43,6 +42,7 @@ const Sidebar = (props) => {
                 activeItem={activeItem}
                 setActiveItem={setActiveItem}
                 changeCurrentNote={changeCurrentNote}
+                changeCurrentId={changeCurrentId}
               />
             ))}
         </ul>

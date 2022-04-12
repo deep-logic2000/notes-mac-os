@@ -5,7 +5,9 @@ const initialState = {
     isOpen: false,
     config:{
         id: null,
+        title: '',
         text: '',
+        modalBtn: 'OK'
     },
 }
 
