@@ -1,11 +1,10 @@
-import {combineReducers} from "redux";
+import { combineReducers } from "redux";
 import notesReducer from "./notesReducer";
-// import modalReducer from "./modalReducer";
-
+import modalReducer from "./modalReducer";
 
 const reducer = combineReducers({
-    notes: notesReducer,
-    // modal: modalReducer
-})
+  notes: notesReducer,
+  modal: modalReducer,
+});
 
-export default reducer
+export default reducer;

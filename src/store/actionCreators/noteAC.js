@@ -19,15 +19,11 @@ export const fetchData = () => async dispatch => {
 };
 export const setIsLoading = value => ({ type: SET_IS_LOADING, payload: value });
 
-export const fetchDataFromLS = data => ({
-  type: FETCH_DATA_FROM_LS,
-  payload: data,
-});
 
 export const addNote = (title, value) => {
   console.log("VALUE", value);
   console.log("TITLE", title);
-  db.notes.add({ noteTitle: "888 Titile", noteText: "888 Text" });
+  db.notes.add({ noteTitle: "999 Titile", noteText: "999 Text" });
 
   return async dispatch => {
     const { data } = await fetch("http://localhost:3001/todo", {
