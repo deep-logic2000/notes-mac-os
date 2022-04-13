@@ -6,7 +6,7 @@ import {
   setIsOpenModalAC,
   setConfig,
 } from "../../store/actionCreators/modalAC";
-import "./NoteContent.scss";
+import styles from "./NoteContent.module.scss";
 
 const NoteContent = props => {
   const { currentNote, currentId } = props;
@@ -15,24 +15,35 @@ const NoteContent = props => {
   const dispatch = useDispatch();
 
   const modalTitle = "Do you really want delete this note?";
-  const modalBtn = "DELETE";
+  // const modalBtn = "DELETE";
+  // const modalBtnEdit = "EDIT";
 
   return (
     <>
-      <div className="noteContentWrapper">
-        <div>{currentNote}</div>
-        <Button type="primary">Edit</Button>
+      <div className={styles.noteContentWrapper}>
+        <div className={styles.noteArea}>{currentNote}</div>
+        <div className={styles.btnWrapper}>
         <Button
           type="primary"
           onClick={() => {
+            dispatch(setConfig(currentId, "Edit your note", "", "EDIT"));
             dispatch(setIsOpenModalAC(true));
-            dispatch(setConfig("", modalTitle, "", modalBtn));
+          }}
+        >
+          Edit
+        </Button>
+        <Button
+          type="primary"
+          danger="true"
+          onClick={() => {
+            dispatch(setConfig(currentId, modalTitle, "", "DELETE"));
+            dispatch(setIsOpenModalAC(true));
           }}
         >
           Delete
         </Button>
+        </div>
       </div>
-      ;
     </>
   );
 };

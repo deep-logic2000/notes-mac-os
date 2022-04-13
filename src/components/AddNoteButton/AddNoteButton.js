@@ -10,7 +10,7 @@ const AddNoteButton = () => {
   const modalBtn = "ADD"
   return (
     <div>
-      <Button type="primary" className="btnAddNote" onClick={() => {
+      <Button type="primary" style={{ background: "rgba(101, 218, 86, 0.89)", borderColor: "rgba(57, 143, 64, 0.89)", marginBottom: "20px" }} className="btnAddNote" onClick={() => {
           dispatch(setIsOpenModalAC(true))
           dispatch(setConfig('', modalTitle, '', modalBtn))
           }}>

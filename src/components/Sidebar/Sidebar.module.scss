@@ -1,0 +1,19 @@
+.sidebarWrapper {
+  height: 70vh;
+  border: 1px solid gainsboro;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center
+}
+
+.sidebarWrapper ul {
+  width: 200px;
+  list-style-type: none;
+  overflow: hidden;
+}
+// .sidebarWrapper ul {
+//   width: 200px;
+//   list-style-type: none;
+//   overflow: hidden;
+// }

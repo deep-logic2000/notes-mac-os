@@ -4,10 +4,10 @@ import {SET_CONFIG, SET_IS_OPEN_MODAL} from "../actions/modalAction";
 const initialState = {
     isOpen: false,
     config:{
-        id: null,
+        id: '',
         title: '',
         text: '',
-        modalBtn: 'OK'
+        modalBtn: ''
     },
 }
 

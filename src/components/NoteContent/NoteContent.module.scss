@@ -1,0 +1,21 @@
+.noteContentWrapper {
+    width: 60%;
+    height: 70vh;
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.noteArea {
+    font-size: 20px;
+}
+
+.btnWrapper {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 50px;
+    align-items: end;
+}

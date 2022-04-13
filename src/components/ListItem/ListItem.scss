@@ -1,3 +1,12 @@
+.liWrapper {
+    padding: 10px;
+}
+
+.liWrapper:hover {
+    background-color: gainsboro;
+    transition: 0.7s;
+}
+
 .active {
-    background: gray;
+    background-color: gainsboro;
 }

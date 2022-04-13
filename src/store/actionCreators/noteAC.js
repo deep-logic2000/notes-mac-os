@@ -3,6 +3,7 @@ import {
   SET_IS_LOADING,
   ADD_NOTE,
   DELETE_NOTE,
+  CHANGE_NOTE
 } from "../actions/notesAction";
 // import Dexie from "dexie";
 // import { useLiveQuery } from "dexie-react-hooks";
@@ -20,8 +21,8 @@ export const fetchData = () => async dispatch => {
 export const setIsLoading = value => ({ type: SET_IS_LOADING, payload: value });
 
 export const addNote = (noteTitle, noteText) => async dispatch => {
-  console.log("noteText", noteText);
-  console.log("noteTitle", noteTitle);
+  // console.log("noteText", noteText);
+  // console.log("noteTitle", noteTitle);
   await db.notes.add({ noteTitle: noteTitle, noteText: noteText });
 
   const allNotes = await db.notes.toArray();
@@ -41,4 +42,15 @@ export const deleteNote = id => async dispatch => {
   dispatch(setIsOpenModalAC(false));
 
   // }
+};
+
+
+export const editNote = (currentId, noteTitle, noteText) => async dispatch => {
+  console.log("noteText", noteText);
+  console.log("noteTitle", noteTitle);
+  await db.notes.put({id: currentId, noteTitle: noteTitle, noteText: noteText });
+
+  const allNotes = await db.notes.toArray();
+
+  dispatch({ type: CHANGE_NOTE, payload: {currentId, noteTitle, noteText} });
 };

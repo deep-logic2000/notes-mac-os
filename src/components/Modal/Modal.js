@@ -3,8 +3,12 @@ import styles from "./Modal.module.scss";
 import { Button } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { setIsOpenModalAC } from "../../store/actionCreators/modalAC";
-import { Input, TextArea } from "antd";
-import { addNote, deleteNote } from "../../store/actionCreators/noteAC";
+import { Input} from "antd";
+import {
+  addNote,
+  deleteNote,
+  editNote,
+} from "../../store/actionCreators/noteAC";
 // import {deleteNote} from "../../store/actionCreators/noteAC";
 
 const Modal = props => {
@@ -12,14 +16,16 @@ const Modal = props => {
   const { isOpen, config } = useSelector(({ modal }) => modal);
   const [valueTitle, setValueTitle] = useState("");
   const [noteText, setNoteText] = useState("");
-  console.log(valueTitle, noteText);
+  //   console.log(valueTitle, noteText);
+
+//   console.log(config.modalBtn);
 
   const dispatch = useDispatch();
   if (!isOpen) {
     return null;
   }
   const { TextArea } = Input;
-  console.log(config.id);
+//   console.log(config.id);
   return (
     <div className={styles.root}>
       <div
@@ -39,7 +45,7 @@ const Modal = props => {
           </Button>
         </div>
         <h2>{config.title}</h2>
-        {config.modalBtn === "ADD" && (
+        {config.modalBtn === "ADD" ? (
           <Input
             placeholder="Enter title of note"
             value={valueTitle}
@@ -47,11 +53,32 @@ const Modal = props => {
               setValueTitle(e.target.value);
             }}
           />
-        )}
+        ) : null}
+        {config.modalBtn === "EDIT" ? (
+          <Input
+            placeholder="Enter new title of note"
+            value={valueTitle}
+            onChange={e => {
+              setValueTitle(e.target.value);
+            }}
+          />
+        ) : null}
         {config.modalBtn === "ADD" ? (
           <TextArea
             rows={4}
             placeholder="Enter note"
+            value={noteText}
+            onChange={e => {
+              setNoteText(e.target.value);
+            }}
+          />
+        ) : (
+          ""
+        )}
+        {config.modalBtn === "EDIT" ? (
+          <TextArea
+            rows={4}
+            placeholder="Change text note"
             value={noteText}
             onChange={e => {
               setNoteText(e.target.value);
@@ -74,6 +101,19 @@ const Modal = props => {
                 setNoteText("");
               }}
             >
+              ADD
+            </Button>
+          ) : null}
+          {config.modalBtn === "EDIT" ? (
+            <Button
+              type="primary"
+              onClick={() => {
+                dispatch(editNote(currentId, valueTitle, noteText));
+                dispatch(setIsOpenModalAC(false));
+                setValueTitle("");
+                setNoteText("");
+              }}
+            >
               {config.modalBtn}
             </Button>
           ) : null}
@@ -88,7 +128,7 @@ const Modal = props => {
               {config.modalBtn}
             </Button>
           ) : null}
-          <Button type="primary">NO</Button>
+          <Button type="primary">CANCEL</Button>
         </div>
       </div>
     </div>

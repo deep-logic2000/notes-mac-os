@@ -4,12 +4,12 @@ import ListItem from "../ListItem/ListItem";
 import { useDispatch, useSelector } from "react-redux";
 // import { fetchDataFromLS } from "../../store/actionCreators/noteAC";
 import { fetchData } from "../../store/actionCreators/noteAC";
-import { FETCH_DATA } from "../../store/actions/notesAction";
-import AddNoteButton from "../AddNoteButton/AddNoteButton"
-import "./Sidebar.scss";
+import AddNoteButton from "../AddNoteButton/AddNoteButton";
+import SearchBox from "../SearchBox/SearchBox";
+import styles from "./Sidebar.module.scss";
 
-const Sidebar = (props) => {
-    const {changeCurrentNote, changeCurrentId} = props
+const Sidebar = props => {
+  const { changeCurrentNote, changeCurrentId, changeCurrentNoteTitle } = props;
   const notes = useSelector(({ notes }) => notes.notes);
   const isLoading = useSelector(({ notes }) => notes.isLoading);
   const [activeItem, setActiveItem] = useState(null);
@@ -20,6 +20,9 @@ const Sidebar = (props) => {
   useEffect(() => {
     dispatch(fetchData());
   }, []);
+  useEffect(() => {
+    // dispatch(fetchData());
+  }, [notes]);
 
   console.log("notes", notes);
 
@@ -29,20 +32,22 @@ const Sidebar = (props) => {
 
   return (
     <>
-      <div>
-          <AddNoteButton />
+      <div className={styles.sidebarWrapper}>
+        <SearchBox />
+        <AddNoteButton />
         <ul>
           {notes &&
             notes.map(({ id, noteTitle, noteText }) => (
               <ListItem
                 id={id}
                 title={noteTitle}
-                text={noteText}
                 key={id}
+                text={noteText}
                 activeItem={activeItem}
                 setActiveItem={setActiveItem}
                 changeCurrentNote={changeCurrentNote}
                 changeCurrentId={changeCurrentId}
+                changeCurrentNoteTitle={changeCurrentNoteTitle}
               />
             ))}
         </ul>
