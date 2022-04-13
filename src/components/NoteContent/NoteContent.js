@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect }from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "antd";
 // import { deleteNote } from "../../store/actionCreators/noteAC";
@@ -13,6 +13,8 @@ const NoteContent = props => {
   const notes = useSelector(({ notes }) => notes.notes);
 
   const dispatch = useDispatch();
+
+  useEffect(() => {console.log(notes);}, [notes])
 
   const modalTitle = "Do you really want delete this note?";
   // const modalBtn = "DELETE";

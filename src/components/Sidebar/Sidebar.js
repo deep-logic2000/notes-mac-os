@@ -20,9 +20,7 @@ const Sidebar = props => {
   useEffect(() => {
     dispatch(fetchData());
   }, []);
-  useEffect(() => {
-    // dispatch(fetchData());
-  }, [notes]);
+ 
 
   console.log("notes", notes);
 

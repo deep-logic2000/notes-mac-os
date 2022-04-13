@@ -3,7 +3,7 @@ import styles from "./Modal.module.scss";
 import { Button } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { setIsOpenModalAC } from "../../store/actionCreators/modalAC";
-import { Input} from "antd";
+import { Input } from "antd";
 import {
   addNote,
   deleteNote,
@@ -18,14 +18,14 @@ const Modal = props => {
   const [noteText, setNoteText] = useState("");
   //   console.log(valueTitle, noteText);
 
-//   console.log(config.modalBtn);
+  //   console.log(config.modalBtn);
 
   const dispatch = useDispatch();
   if (!isOpen) {
     return null;
   }
   const { TextArea } = Input;
-//   console.log(config.id);
+  //   console.log(config.id);
   return (
     <div className={styles.root}>
       <div
@@ -128,7 +128,14 @@ const Modal = props => {
               {config.modalBtn}
             </Button>
           ) : null}
-          <Button type="primary">CANCEL</Button>
+          <Button
+            type="primary"
+            onClick={() => {
+              dispatch(setIsOpenModalAC(false));
+            }}
+          >
+            CANCEL
+          </Button>
         </div>
       </div>
     </div>

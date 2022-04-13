@@ -3,8 +3,10 @@ import {
   SET_IS_LOADING,
   ADD_NOTE,
   DELETE_NOTE,
-  CHANGE_NOTE
+  CHANGE_NOTE,
+  SEARCH_NOTES,
 } from "../actions/notesAction";
+import { dbAdd, dbEditNote, dbDeleteNote } from "../../components/api/db";
 // import Dexie from "dexie";
 // import { useLiveQuery } from "dexie-react-hooks";
 import { db } from "../../components/api/db";
@@ -23,7 +25,7 @@ export const setIsLoading = value => ({ type: SET_IS_LOADING, payload: value });
 export const addNote = (noteTitle, noteText) => async dispatch => {
   // console.log("noteText", noteText);
   // console.log("noteTitle", noteTitle);
-  await db.notes.add({ noteTitle: noteTitle, noteText: noteText });
+  dbAdd(noteTitle, noteText);
 
   const allNotes = await db.notes.toArray();
 
@@ -31,12 +33,7 @@ export const addNote = (noteTitle, noteText) => async dispatch => {
 };
 
 export const deleteNote = id => async dispatch => {
-  //   const {data, status} = await fetch(`http://localhost:3001/todo?id=${id}`, {
-  //       method: 'DELETE',
-  //   }).then(res => res.json())
-  // console.log(data)
-  // if(status === 'success'){
-  await db.notes.delete(id);
+  dbDeleteNote(id);
   const allNotes = await db.notes.toArray();
   dispatch({ type: DELETE_NOTE, payload: allNotes });
   dispatch(setIsOpenModalAC(false));
@@ -44,13 +41,22 @@ export const deleteNote = id => async dispatch => {
   // }
 };
 
+export const editNote = (currentId, noteTitle, noteText) => dispatch => {
+  // console.log("noteText", noteText);
+  // console.log("noteTitle", noteTitle);
+  dbEditNote(currentId, noteTitle, noteText);
+  dispatch({ type: CHANGE_NOTE, payload: { currentId, noteTitle, noteText } });
+};
 
-export const editNote = (currentId, noteTitle, noteText) => async dispatch => {
-  console.log("noteText", noteText);
-  console.log("noteTitle", noteTitle);
-  await db.notes.put({id: currentId, noteTitle: noteTitle, noteText: noteText });
+export const changeSearchValue = valueInput => async dispatch => {
+  const notes = await db.notes.toArray();
+  // console.log(valueInput, notes);
 
-  const allNotes = await db.notes.toArray();
-
-  dispatch({ type: CHANGE_NOTE, payload: {currentId, noteTitle, noteText} });
+  dispatch({
+    type: SEARCH_NOTES,
+    payload: {
+      notes,
+      valueInput,
+    },
+  });
 };
