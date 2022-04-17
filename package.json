@@ -10,6 +10,7 @@
     "dexie": "^3.2.1",
     "dexie-react-hooks": "^1.1.1",
     "easymde": "^2.16.1",
+    "localforage": "^1.10.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-redux": "^7.2.8",

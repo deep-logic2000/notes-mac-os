@@ -25,7 +25,7 @@ const NoteContent = props => {
       <div className={styles.noteContentWrapper}>
         <div className={styles.noteArea}>{currentNote}</div>
         <div className={styles.btnWrapper}>
-        <Button
+        {currentId ? <Button
           type="primary"
           onClick={() => {
             dispatch(setConfig(currentId, "Edit your note", "", "EDIT"));
@@ -33,8 +33,18 @@ const NoteContent = props => {
           }}
         >
           Edit
-        </Button>
+        </Button> :
         <Button
+        type="primary"
+        disabled
+        onClick={() => {
+          dispatch(setConfig(currentId, "Edit your note", "", "EDIT"));
+          dispatch(setIsOpenModalAC(true));
+        }}
+      >
+        Edit
+      </Button>}
+        {currentId ? <Button
           type="primary"
           danger="true"
           onClick={() => {
@@ -43,7 +53,17 @@ const NoteContent = props => {
           }}
         >
           Delete
-        </Button>
+        </Button> : <Button
+          type="primary"
+          danger="true"
+          disabled
+          onClick={() => {
+            dispatch(setConfig(currentId, modalTitle, "", "DELETE"));
+            dispatch(setIsOpenModalAC(true));
+          }}
+        >
+          Delete
+        </Button>}
         </div>
       </div>
     </>
