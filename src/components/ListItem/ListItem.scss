@@ -1,6 +1,7 @@
 .liWrapper {
-    padding: 10px;
+    padding: 5px;
     cursor: pointer;
+    border: 1px solid gainsboro;
 }
 
 .liWrapper:hover {
@@ -10,4 +11,12 @@
 
 .active {
     background-color: gainsboro;
+}
+
+.titleOfSidebarElement {
+    font-size: 20px;
+    margin-bottom: 0;
+}
+.textOfSidebarElement {
+    margin-bottom: 0;
 }

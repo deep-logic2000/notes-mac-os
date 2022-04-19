@@ -14,7 +14,7 @@ const NoteContent = props => {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {console.log(notes);}, [notes])
+  useEffect(() => {console.log(notes)}, [notes])
 
   const modalTitle = "Do you really want delete this note?";
   // const modalBtn = "DELETE";

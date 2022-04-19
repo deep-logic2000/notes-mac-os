@@ -1,5 +1,4 @@
 import React, { useState} from "react";
-import WorkSpace from "./components/WorkSpace/WorkSpace";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Modal from "./components/Modal/Modal";
 import NoteContent from "./components/NoteContent/NoteContent";
@@ -14,7 +13,6 @@ const changeCurrentNote = (value) =>{
   setCurrentNote(value)
 }
 
-
 const changeCurrentId = (id) =>{
   setCurrentId(id)
 }
@@ -27,7 +25,6 @@ const changeCurrentNoteTitle = (noteTitle) =>{
       <Sidebar changeCurrentNote={changeCurrentNote} changeCurrentId={changeCurrentId} changeCurrentNoteTitle={changeCurrentNoteTitle}/>
       <Modal currentId={currentId} currentNoteTitle={currentNoteTitle}/>
       <NoteContent currentNote={currentNote} currentId={currentId}/>
-      {/* <WorkSpace /> */}
     </div>
   );
 }

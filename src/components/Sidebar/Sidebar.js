@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import ListItem from "../ListItem/ListItem";
 import { useDispatch, useSelector } from "react-redux";
-// import { fetchDataFromLS } from "../../store/actionCreators/noteAC";
 import { fetchData } from "../../store/actionCreators/noteAC";
 import AddNoteButton from "../AddNoteButton/AddNoteButton";
 import SearchBox from "../SearchBox/SearchBox";
@@ -11,7 +10,6 @@ import styles from "./Sidebar.module.scss";
 const Sidebar = props => {
   const { changeCurrentNote, changeCurrentId, changeCurrentNoteTitle } = props;
   const notes = useSelector(({ notes }) => notes.notes);
-  const isLoading = useSelector(({ notes }) => notes.isLoading);
   const [activeItem, setActiveItem] = useState(null);
   //   console.log(notes);
 
@@ -39,8 +37,8 @@ const Sidebar = props => {
               <ListItem
                 id={id}
                 title={noteTitle}
-                key={id}
                 text={noteText}
+                key={id}
                 activeItem={activeItem}
                 setActiveItem={setActiveItem}
                 changeCurrentNote={changeCurrentNote}

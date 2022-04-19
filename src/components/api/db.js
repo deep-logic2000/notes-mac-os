@@ -4,7 +4,10 @@ export const db = new Dexie("myDatabase");
 db.version(1).stores({
   notes: "++id, noteTitle, noteText", // Primary key and indexed props
 });
-
+export const dbGetAllNotes = async () => {
+  const allNotes = await db.notes.toArray();
+  return allNotes
+};
 export const dbAdd = async (noteTitle, noteText) => {
   await db.notes.add({ noteTitle: noteTitle, noteText: noteText });
 };
